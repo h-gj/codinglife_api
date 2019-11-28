@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'user',
-    'drf_yasg'
+    'drf_yasg',
+    'article'
 ]
 
 MIDDLEWARE = [
@@ -103,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hans'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -119,7 +120,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'codinglife.exceptions.custom_exception_handler',
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.IsAuthenticatedOrReadOnly'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'user.authentication.UserAuthentication'
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'codinglife.renderers.DDJsonRenderer'
+    ],
 }
