@@ -120,14 +120,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
+    # 'UNAUHTENTICATED_USER': None,
     'EXCEPTION_HANDLER': 'codinglife.exceptions.custom_exception_handler',
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly'
-    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'user.authentication.UserAuthentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'codinglife.renderers.DDJsonRenderer'
     ],
+    'DEFAULT_PAGINATION_CLASS': 'codinglife.paginations.DDPageNumberPagination',
+    'PAGE_SIZE': 30,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+
+

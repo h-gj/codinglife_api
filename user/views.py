@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework.decorators import action
+from rest_framework.decorators import action, permission_classes, authentication_classes
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, UpdateModelMixin, DestroyModelMixin, \
     RetrieveModelMixin
@@ -18,7 +18,7 @@ from user.serializers import UserSerializer, UserCreateSerializer, UserLoginSeri
 
 
 class UserViewSet(CreateModelMixin,
-                  ListModelMixin,
+                  # ListModelMixin,
                   UpdateModelMixin,
                   DestroyModelMixin,
                   RetrieveModelMixin,
