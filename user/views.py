@@ -26,8 +26,7 @@ class UserViewSet(CreateModelMixin,
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
-    @swagger_auto_schema(tags=['用户'], operation_summary='新建用户',
-                         request_body=UserCreateSerializer)
+    @swagger_auto_schema(request_body=UserCreateSerializer)
     def create(self, request, *args, **kwargs):
         serializer = UserCreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -43,7 +42,7 @@ class UserViewSet(CreateModelMixin,
     def destroy(self, request, *args, **kwargs):
         return super(UserViewSet, self).destroy(request, *args, **kwargs)
 
-    @swagger_auto_schema(tags=['用户'], operation_summary='用户登陆',
+    @swagger_auto_schema(tags=['auth'], operation_summary='用户登陆',
                          request_body=UserLoginSerializer)
     @action(methods=['POST'], detail=False)
     def login(self, request, *arg, **kwargs):
@@ -55,7 +54,7 @@ class UserViewSet(CreateModelMixin,
             request.session['uid'] = user.id
             return Response(UserSerializer(user).data)
 
-    @swagger_auto_schema(tags=['用户'], operation_summary='退出登陆', request_body=UserEmptySerializer)
+    @swagger_auto_schema(tags=['auth'], operation_summary='退出登陆', request_body=UserEmptySerializer)
     @action(methods=['POST'], detail=False)
     def logout(self, request, *arg, **kwargs):
         request.session.flush()

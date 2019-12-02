@@ -14,3 +14,14 @@ class Article(BaseModel):
     class Meta:
         ordering = ['-id']
 
+
+class ArticleComment(BaseModel):
+    content = models.TextField()
+    author = models.ForeignKey('user.User', related_name='comments', on_delete=models.CASCADE)
+    article = models.ForeignKey('article.Article', related_name='comments', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-id']
+
+
+

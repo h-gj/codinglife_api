@@ -20,24 +20,20 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 
-from article.views import ArticleViewSet
+from article.views import ArticleViewSet, ArticleCommentViewSet
 from user.views import UserViewSet
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
 router.register('articles', ArticleViewSet)
+router.register('article-comments', ArticleCommentViewSet)
 
 schema_view = get_schema_view(
     openapi.Info(
         title="CodingLife",
         default_version='v1',
-        description="A forum based on FLask.",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="gjwlkj@gmail.com"),
-        license=openapi.License(name="BSD License"),
     ),
     public=True,
-    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [
