@@ -3,8 +3,8 @@ chardet==3.0.4
 colorama==0.4.1
 coreapi==2.3.3
 coreschema==0.0.4
-Django==2.2.7
-django-filter==2.2.0
+Django==3.2.15
+django-filter==2.4.0
 djangorestframework==3.10.3
 drf-yasg==1.17.0
 httpie==1.0.3
@@ -22,6 +22,6 @@ requests==2.22.0
 ruamel.yaml==0.16.5
 ruamel.yaml.clib==0.2.0
 six==1.13.0
-sqlparse==0.3.0
+sqlparse==0.4.2
 uritemplate==3.0.0
 urllib3==1.25.7
